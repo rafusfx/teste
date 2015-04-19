@@ -73,7 +73,7 @@ function onSuccess(position) {
     
     
     geoFire.set(id, [lat, long]).then(function () {
-    
+    myApp.alert("GPS data saved!");
     }, function (error) {
     myApp.alert("Error: " + error);
     });
