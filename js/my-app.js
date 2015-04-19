@@ -15,8 +15,6 @@ var nome = window.localStorage.getItem("nome");
 var email = window.localStorage.getItem("email");
 
 if(id != null){
-
-
 mainView.router.loadPage('services.html');
 }
   
@@ -36,12 +34,10 @@ function onLoad() {
 
 function onMenuKeyDown(){
 
-    
-    
-    
+     
     }
 
-    function onBackKeyDown(){
+function onBackKeyDown(){
 
         mainView.router.back();
     }
@@ -59,7 +55,7 @@ function onSuccess(position) {
     window.localStorage.setItem("lat", lat );
     window.localStorage.setItem("long", long);
       
-    $$.getJSON("http://samespace.hospedagemdesites.ws/app/services/setlatlng.php?id=" + id + "&lat="+ lat +"&long="+ long+"", function (dados) {
+    $$.getJSON("http://samespace.hospedagemdesites.ws/app/services/setlatlng.php?id=" + id + "&lat="+ lat +"&long="+ long+"", function (dados)      {
         
         if (dados.retorno == "1") {
               
@@ -71,6 +67,18 @@ function onSuccess(position) {
 
         }
     })
+    
+    // Create a Firebase reference where GeoFire will store its information
+    var firebaseRef = new Firebase("https://radiant-inferno-7309.firebaseio.com/");
+    // Create a GeoFire index
+    var geoFire = new GeoFire(firebaseRef);
+    //var ref = geoFire.ref();  // ref === firebaseRef
+    
+    geoFire.set(id, [lat, long]).then(function () {
+    myApp.alert("Provided key has been added to GeoFire");
+    }, function (error) {
+    myApp.alert("Error: " + error);
+    });
 }
 
 // onError Callback receives a PositionError object
@@ -86,6 +94,7 @@ function startLocating(){
 var watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000, enableHighAccuracy: true  });
     
 }
+
 function distance(lat1, lon1, lat2, lon2) {
     
     myApp.alert("distance ignited");
