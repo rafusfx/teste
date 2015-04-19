@@ -13,6 +13,8 @@ var mainView = myApp.addView('.view-main', {
 var id = window.localStorage.getItem("userID");
 var nome = window.localStorage.getItem("nome");
 var email = window.localStorage.getItem("email");
+var firebaseRef = new Firebase("https://radiant-inferno-7309.firebaseio.com/");
+var geoFire = new GeoFire(firebaseRef);
 
 if(id != null){
 mainView.router.loadPage('services.html');
@@ -21,26 +23,27 @@ mainView.router.loadPage('services.html');
 
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
-    }
+}
 
     // device APIs are available
     //
-    function onDeviceReady() {
+function onDeviceReady() {
         // Register the event listener
         document.addEventListener("menubutton", onMenuKeyDown, false);
         document.addEventListener("backbutton", onBackKeyDown, false);
-    }
+       // Create a Firebase reference where GeoFire will store its information
+        
+}
 
 
 function onMenuKeyDown(){
 
      
-    }
+}
 
 function onBackKeyDown(){
-
         mainView.router.back();
-    }
+ }
 
 
 // onSuccess Callback
@@ -48,7 +51,7 @@ function onBackKeyDown(){
 //   the current GPS coordinates
 //
 function onSuccess(position) {
-    var id = window.localStorage.getItem("userID");
+  
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
     
@@ -56,26 +59,21 @@ function onSuccess(position) {
     window.localStorage.setItem("long", long);
       
     $$.getJSON("http://samespace.hospedagemdesites.ws/app/services/setlatlng.php?id=" + id + "&lat="+ lat +"&long="+ long+"", function (dados)      {
-        
         if (dados.retorno == "1") {
               
            
         } else if(dados.retorno == "0")  {
-
-           
             myApp.alert("Erro na atualização do GEO, verifique sua conexão", "Ops!");
-
         }
     })
     
-    // Create a Firebase reference where GeoFire will store its information
-    var firebaseRef = new Firebase("https://radiant-inferno-7309.firebaseio.com/");
-    // Create a GeoFire index
-    var geoFire = new GeoFire(firebaseRef);
-    //var ref = geoFire.ref();  // ref === firebaseRef
+   
+    
+   
+    
     
     geoFire.set(id, [lat, long]).then(function () {
-    myApp.alert("Provided key has been added to GeoFire");
+    
     }, function (error) {
     myApp.alert("Error: " + error);
     });
@@ -214,7 +212,7 @@ myApp.onPageInit('contatos', function (page) {
 });
 
 myApp.onPageInit('conversas', function (page) {
-new Firebase('https://radiant-inferno-7309.firebaseio.com/web/data');
+
 
 
 });
