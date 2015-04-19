@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>SameSpace</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/css.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.firebase.com/js/client/2.0.6/firebase.js"></script>
+    
+</head>
+
+<body>
+  <div class="popup popup-cadastro">
+    
+       <div class="navbar">
+            <div class="navbar-inner" style="background-color:#b5b5b5">
+                <div class="left">
+                    <a href="#" class="close-popup link icon-only"> 
+                        <i class="fa fa-close fa-lg color-gray" ></i>
+                    </a>
+                </div>
+                               
+            </div>
+        </div>
+      
+    <div class="page-content messages-content" style="background-color:white;">
+
+    <div class="list-block" style="margin:5px 0px 0px 0px;">
+        <ul style="border:0px;">
+            <li>
+                <div class="item-content">
+       <div class="item-media" style="background-color:#4C7286">&nbsp;</div>
+        <div class="item-inner">
+          <div class="item-title label">Nome</div>
+          <div class="item-input">
+            <input id="nometxc" type="text"  placeholder="Seu Nome">
+          </div>
+        </div>
+      </div>
+            </li>
+            
+            <li>
+                <div class="item-content">
+        <div class="item-media" style="background-color:#6EA4C1">&nbsp;</div>
+        <div class="item-inner">
+          <div class="item-title label">Aniversário</div>
+          <div class="item-input">
+            <input id="datanasctxc"  type="date" placeholder="Data de Nascimento" value="1999-01-01">
+          </div>
+        </div>
+      </div>
+            </li>
+            <li>
+                <div class="item-content">
+        <div class="item-media" style="background-color:#6DB2A1">&nbsp;</div>
+        <div class="item-inner">
+          <div class="item-title label">E-mail</div>
+          <div class="item-input">
+            <input  id="emailtxc" type="email" placeholder="E-mail">
+          </div>
+        </div>
+      </div>
+            </li>
+            <li>
+                <div class="item-content">
+        <div class="item-media" style="background-color:#CD8C56">
+                &nbsp;    </div>
+        <div class="item-inner">
+          <div class="item-title label">Senha</div>
+          <div class="item-input">
+            <input  id="senhatxc" type="password" placeholder="Senha">
+          </div>
+        </div>
+      </div>
+            </li>
+            <li>
+                <div class="item-content" >
+        <div class="item-media" style="background-color:#B85655">
+                &nbsp;    </div>
+        <div class="item-inner">
+          <div class="item-title label">Conf. Senha</div>
+          <div class="item-input">
+            <input  id="confsenhatxc"  type="password" placeholder="Confirme a senha">
+          </div>
+        </div>
+      </div>
+            </li>
+            <li></li>
+        </ul>
+        
+        <p><a href="#" class="button button-big button-fill popup-close" style="background-color:#b5b5b5; box-shadow: 0px 5px 0px #828282; margin:20px 30px 0px 30px" ontouchstart="myApp.showPreloader(); newcadastro();">Cadastrar</a>
+        </p>
+    </div>
+
+ </div>
+</div>
+<div class="popup popup-logins">
+    
+       <div class="navbar">
+            <div class="navbar-inner" style="background-color:#b5b5b5">
+                <div class="left">
+                    <a href="#" class="close-popup link icon-only"> 
+                        <i class="fa fa-close fa-lg color-gray" ></i>
+                    </a>
+                </div>
+                               
+            </div>
+        </div>
+    
+    <div class="page-content" style="background-color:white;">
+     <div class="content-block" style="margin:20px 10px 10px 10px;">
+                            <p>
+<a href="services.html" class="button button-big button-fill" style="background-color:#46629e; box-shadow: 0px 5px 0px #2f477a;"><i class="fa fa-facebook-square fa-lg color-white" ></i>&nbsp;Facebook</a>
+                            </p>
+                            <p><a href="#" data-popup=".popup-cadastro" class="button button-big button-fill open-popup" style="background-color:#d94a3a; box-shadow: 0px 5px 0px #ae2b1d;"><i class="fa fa-google-plus-square fa-lg color-white" ></i>&nbsp;Google+</a>
+                            </p>
+                           
+    </div>
+    </div>
+    
+</div>    
+    
+    <div class="popup popup-busca"> 
+          <p><a href="#" class="close-popup">Close popup</a></p>
+         <div class="toolbar messagebar">
+            <div class="toolbar-inner">
+                <textarea style="width:70%;" placeholder="..."></textarea><a href="#" class="button" style="width:20%;" onclick="myApp.showPreloader(); gomessage(); navigator.vibrate(20);">Enviar</a>
+            </div>
+        </div>
+        <div class="page-content messages-content" style="background-color:white;">
+           <div class="messages" style="margin-top: 10px;margin-right: 20px;flex-direction: column;float: right; background:transparent">
+                <ul id="msg-content" style="text-decoration:none; list-style-type: none; margin:0px; padding:0px;">
+                </ul>
+           </div>
+        </div>
+    </div>
+    <div class="popup popup-filtro"> 
+    <div class="content-block">
+      <p>Filtro</p>
+      <p><a href="#" class="close-popup">Close popup</a></p>
+      <p>Lorem ipsum dolor ...</p>
+    </div> 
+    </div>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <div class="panel panel-left panel-cover" style="width:100px">
+        <a href="contatos.html" class="menu-btn">
+            <div class="icon-sq2" style="background-color:#4F5D73;width:100px;">
+                <div style="width:49px;height:48px; margin-right:auto; margin-left:auto;background: url(../img/iconcontacts.svg) ; position: relative;  top: 25%; transform: translateY(-50%);"></div>
+            </div>
+        </a>
+        
+         <a href="conversas.html" class="menu-btn">
+            <div class="icon-sq2" style="background-color:#77B3D4">
+                <div style="width:50px;height:50px; margin-right:auto; margin-left:auto;background: url(img/iconchats.svg); position: relative;  top: 25%; transform: translateY(-50%);"></div>
+            </div>
+
+        </a>
+        
+        <a href="pessoas.html" class="menu-btn">
+            <div class="icon-sq2" style="background-color:#76C2AF">
+                <div style="width:50px;height:50px; margin-right:auto; margin-left:auto;background: url(img/iconpessoas.svg); position: relative;  top: 25%; transform: translateY(-50%);"></div>
+            </div>
+
+        </a>
+
+        <a href="feeds.html" class="menu-btn">
+            <div class="icon-sq2" style="background-color:#F5CF87">
+                <div style="width:50px;height:50px; margin-right:auto; margin-left:auto;background: url(img/iconfeeds.svg); position: relative;  top: 25%; transform: translateY(-50%);"></div>
+            </div>
+
+        </a>
+
+        <a href="classificados.html" class="menu-btn">
+            <div class="icon-sq2" style="background-color:#cc8c54">
+                <div style="width:50px;height:50px; margin-right:auto; margin-left:auto;background: url(img/iconclass.svg); position: relative;  top: 25%; transform: translateY(-50%);"></div>
+            </div>
+
+        </a>
+
+        <a href="ofertas.html" class="menu-btn">
+            <div class="icon-sq2" style="background-color:#C75C5C">
+                <div style="width:50px;height:50px; margin-right:auto; margin-left:auto;background: url(img/iconhot.svg) ; position: relative;  top: 25%; transform: translateY(-50%);"></div>
+            </div>
+
+        </a>
+
+       
+    </div>
+
+    <div class="views">
+        <!-- Your main view, should have "view-main" class-->
+        <div class="view view-main">
+            <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages ">
+                <!-- Page, data-page contains page name-->
+                <div data-page="index" class="page" style="background-color:#fff;">
+                    <!-- Scrollable page content-->
+                    <div class="page-content" style="padding-top:0px;padding-bottom:0px">
+                        <div class="content-block" style="margin-top:0px; margin-bottom:0px; ">
+                            <div class="content-block-inner" style="border:0px">
+                                <div class="logo"></div>
+                            </div>
+                        </div>
+                        <div class="list-block" style="margin:5px 30px 0px 30px;">
+                            <ul style="border:0px;">
+                                <li style="border-bottom:1px solid #c8c7cc">
+                                    <input id="emailtx" type="email" placeholder="Email" />
+                                </li>
+                                <li>
+                                    <input id="passwordtx" type="password" placeholder="Senha" />
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="content-block" style="margin:20px 10px 10px 10px;">
+                            <p>
+<a href="#" class="button button-big button-fill" style="background-color:#919191; box-shadow: 0px 5px 0px #535353;" ontouchstart=" myApp.showPreloader(); login();">Entrar</a>  
+                            </p>
+                            <p><a href="#" data-popup=".popup-cadastro" class="button button-big button-fill open-popup" style="background-color:#b5b5b5; box-shadow: 0px 5px 0px #828282;">Cadastre-se</a>
+                            </p>
+                            <p><a href="#" data-popup=".popup-logins" class="button button-big button-fill open-popup" style="background-color:#e4e4e4; box-shadow: 0px 5px 0px #969696; color:#919191">Outras formas de login</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Toolbar-->
+        </div>
+    </div>
+    <script id="tempContatos" type="text/template7" >
+       
+    {{#each items}}
+    <div class="userBox">
+        <div class="avatarBox">
+            <img src="{{img}}" />
+            <div class="userName">{{name}}</div>
+        </div>
+        <div class="userDetails">
+            <div class="userAge">{{age}}</div>
+            <div class="userStatus">{{status}}</div>
+            <div class="userDistance">{{dist}}</div>
+        </div>
+        <div class="func">
+            <div class="userOptions">
+                <a href="#" ontouchstart="like('{{id}}')"><i class="iconLike" ></i></a>
+                <a href="#" ontouchstart="startChat('{{id}}')"><i class="iconChat" ></i></a>
+                <a href="#" ontouchstart="getGeo('{{id}}')"><i class="iconGeo" ></i></a>
+                <a href="#" ontouchstart="goProfile('{{id}}')"><i class="iconEye" ></i></a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+                   
+    </script>  
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    
+    <script type="text/javascript" src="js/my-app.js"></script>
+    <script src="js/md5.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>
