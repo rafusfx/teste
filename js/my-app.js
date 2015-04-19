@@ -10,15 +10,67 @@ var mainView = myApp.addView('.view-main', {
    // dynamicNavbar: false;
 });
 
-        // onSuccess Callback
+var id = window.localStorage.getItem("userID");
+var nome = window.localStorage.getItem("nome");
+var email = window.localStorage.getItem("email");
+
+if(id != null){
+
+
+mainView.router.loadPage('services.html');
+}
+  
+
+function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        // Register the event listener
+        document.addEventListener("menubutton", onMenuKeyDown, false);
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
+
+function onMenuKeyDown(){
+
+    
+    
+    
+    }
+
+    function onBackKeyDown(){
+
+        mainView.router.back();
+    }
+
+
+// onSuccess Callback
 //   This method accepts a `Position` object, which contains
 //   the current GPS coordinates
 //
 function onSuccess(position) {
+    var id = window.localStorage.getItem("userID");
+    var lat = position.coords.latitude;
+    var long = position.coords.longitude;
     
-    window.localStorage.setItem("lat", position.coords.latitude);
-    window.localStorage.setItem("long", position.coords.longitude);
-    
+    window.localStorage.setItem("lat", lat );
+    window.localStorage.setItem("long", long);
+      
+    $$.getJSON("http://samespace.hospedagemdesites.ws/app/services/setlatlng.php?id=" + id + "&lat="+ lat +"&long="+ long+"", function (dados) {
+        
+        if (dados.retorno == "1") {
+              
+           
+        } else if(dados.retorno == "0")  {
+
+           
+            myApp.alert("Erro na atualização do GEO, verifique sua conexão", "Ops!");
+
+        }
+    })
 }
 
 // onError Callback receives a PositionError object
@@ -28,12 +80,15 @@ function onError(error) {
           'message: ' + error.message + '\n');
 }
 
-
+function startLocating(){
 // Options: throw an error if no update is received every 30 seconds.
 //
-var watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000,enableHighAccuracy: true  });
-
+var watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000, enableHighAccuracy: true  });
+    
+}
 function distance(lat1, lon1, lat2, lon2) {
+    
+    myApp.alert("distance ignited");
 
     var radlat1 = Math.PI * lat1/180
 
@@ -65,6 +120,7 @@ function distance(lat1, lon1, lat2, lon2) {
 myApp.onPageInit('services', function (page) {
     // run createContentPage func after link was clicked
      
+      
        var box = $$("#box");
        var menubtn = $$(".menu-btn");  
       
@@ -103,7 +159,7 @@ myApp.onPageInit('services', function (page) {
        menubtn.css("line-height", Math.ceil(safeHeight/6) + "px"); 
     
      
-    
+    startLocating();
    
        
 });
@@ -112,26 +168,26 @@ myApp.onPageInit('services', function (page) {
 
 
 myApp.onPageInit('contatos', function (page) {
-   
-    var mylat; //get my latitude
-    var mylon; // get my longitute
-    $$.getJSON ("/getContacts.php?n=all", function (json) {
+   var id = window.localStorage.getItem("userID");
+    var mylat = window.localStorage.getItem("lat");
+    var mylon = window.localStorage.getItem("long");
+    $$.getJSON("http://samespace.hospedagemdesites.ws/app/services/getContacts.php?id= " + id + "", function (json) {
        
     myApp.virtualList(contactList,{
    
-   items:[json],
+   items: json ,
        
        template:'<div class="userBox">'+
-                    '<div class="avatarBox">'+
-                        '<img src="{{img}}" />'+
-                        '<div class="userName">{{name}}</div>'+
+                     '<div class="avatarBox">'+
+                        '<img src="{{picUrl}}" />'+
+                        '<div class="userName">{{nome}}</div>'+
                     '</div>'+
                     '<div class="userDetails">'+
-                        '<div class="userAge">{{age}}</div>'+
+                        '<div class="userAge">{{idade}}</div>'+
                         '<div class="userStatus">{{status}}</div>'+
-                        '<div class="userDistance">' +' distance(mylat,mylon,{{lat}},{{long}});' + '</div>'+
+                        '<div class="userDistance"><script>distance(mylat,mylon, {{lat}},{{lng}} ); </script></div>'+
                     '</div>'+
-                    '<div class="func">'+
+                    '<div class="func">'+ 
                         '<div class="userOptions">'+
                             '<a href="#" ontouchstart="like("{{id}}")"><i class="iconLike" ></i></a>'+
                             '<a href="#" ontouchstart="startChat("{{id}}")"><i class="iconChat" ></i></a>'+

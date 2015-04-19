@@ -16,7 +16,7 @@
     
 </head>
 
-<body>
+<body onload="onLoad();">
   <div class="popup popup-cadastro">
     
        <div class="navbar">
@@ -68,7 +68,7 @@
         </div>
       </div>
             </li>
-            <li>
+            <li> 
                 <div class="item-content">
         <div class="item-media" style="background-color:#CD8C56">
                 &nbsp;    </div>
@@ -95,7 +95,7 @@
             <li></li>
         </ul>
         
-        <p><a href="#" class="button button-big button-fill popup-close" style="background-color:#b5b5b5; box-shadow: 0px 5px 0px #828282; margin:20px 30px 0px 30px" ontouchstart="myApp.showPreloader(); newcadastro();">Cadastrar</a>
+        <p><a href="#" class="button button-big button-fill" style="background-color:#b5b5b5; box-shadow: 0px 5px 0px #828282; margin:20px 30px 0px 30px" ontouchstart="myApp.showPreloader(); newcadastro();">Cadastrar</a>
         </p>
     </div>
 
@@ -237,7 +237,7 @@
         </div>
     </div>
     <script id="tempContatos" type="text/template7" >
-       
+        
     {{#each items}}
     <div class="userBox">
         <div class="avatarBox">
@@ -260,7 +260,8 @@
     </div>
     {{/each}}
                    
-    </script>  
+    </script> 
+    <script type="text/javascript" src="cordova.js"></script>
     <!-- Path to Framework7 Library JS-->
     <script type="text/javascript" src="js/framework7.min.js"></script>
     <!-- Path to your app js-->
