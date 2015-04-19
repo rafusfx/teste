@@ -13,7 +13,7 @@ function login() {
             if (dados.retorno == "1") {
 
                 myApp.hidePreloader();
-                myApp.alert("login ok!");
+                
                 //##### CREATE COOKIE WITH ID  #######///
                 window.localStorage.setItem("userID", dados.profile.id);
                 window.localStorage.setItem("nome", dados.profile.nome);
